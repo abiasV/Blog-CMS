@@ -15,7 +15,7 @@ if($id) {
 ?>
 
     <div class="create-form w-100 mx-auto p-4" style="max-width: 700px;">
-      <form action="process.php" method="post">
+      <form action="posts.php" method="post">
         <?php
           while($data = mysqli_fetch_array($result)) {
         ?>

@@ -1,13 +1,37 @@
 <?php
-if(isset($_POST['login'])) {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  if ($username == "admin" && $password == "admin") {
-    session_start();
-    $_SESSION["user"] = "admin";
-    header("Location: index.php");
+  include("../connect.php");
+  include("./templates/functions.php");
+  
+  if( isset( $_POST['login'] ) )
+  {
+    $query = 'SELECT * FROM users
+      WHERE username = "'.$_POST['username'].'"
+      AND password = "'.md5( $_POST['password'] ).'"
+      AND role = "admin"
+      LIMIT 1';
+    $result = mysqli_query( $conn, $query );
+    
+    if( mysqli_num_rows( $result ) )
+    {
+      
+      $record = mysqli_fetch_assoc( $result );
+      
+      session_start();
+      $_SESSION['user_id'] = $record['user_id'];
+      echo "사용자 ID: " . $user_id;
+      $_SESSION['username'] = $record['username'];
+      
+      header("Location: index.php");
+      die();
+      
+    } else{
+      
+      set_message( 'Incorrect email and/or password' );
+      
+      header( 'Location: index.php' );
+      die();
+    } 
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +47,7 @@ if(isset($_POST['login'])) {
     <div class="login-form">
       <form action="login.php" method="post">
         <div class="form-field mb-4">
-          <input class="form-control" type="text" name="username" placeholder="user name">
+          <input class="form-control" type="text" name="username" placeholder="username">
         </div>
         <div class="form-field mb-4">
           <input class="form-control" type="password" name="password" placeholder="Password">

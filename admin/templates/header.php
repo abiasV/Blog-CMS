@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION["user"])) {
-  header("Location: login.php");
-}
+  session_start();
+  if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+  }
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +18,31 @@ if (!isset($_SESSION["user"])) {
     <div class="sidebar bg-dark vh-100">
       <h1 class="bg-primary p-4"><a href="./index.php" class="text-light text-decoration-none">Dashboard</a></h1>
       <div class="menues p-4 mt-5">
-        <div class="menu d-flex flex-column gap-5">
-          <a href="create.php" class="text-light text-decoration-none"><strong>New Post</strong></a>
-          <a href="../index.php" class="text-light text-decoration-none"><strong>View website</strong></a>
-        </div>
+        <ul class="list-unstyled menu d-flex flex-column gap-5">
+          <li class="text-light text-decoration-none">
+            <strong class="fs-4">Posts</strong>
+            <ul class="list-unstyled">
+              <li class="ps-2">
+                <a href="posts_create.php" class="text-light text-decoration-none">New Post</a>
+              </li>
+              <li class="ps-2">
+                <a href="posts_list.php" class="text-light text-decoration-none">Posts List</a>
+              </li>
+            </ul>
+          </li>
+          <li class="text-light text-decoration-none">
+            <strong class="fs-4">Users</strong>
+            <ul class="list-unstyled">
+              <li class="ps-2">
+                <a href="users_create.php" class="text-light text-decoration-none">New Users</a>
+              </li>
+              <li class="ps-2">
+                <a href="users_list.php" class="text-light text-decoration-none">Users List</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="../index.php" class="text-light text-decoration-none"><strong class="fs-4">View Posts</strong></a></li>
+        </ul>
         <div class="menu mt-5">
           <a href="logout.php" class="btn btn-info">Logout</a>
         </div>

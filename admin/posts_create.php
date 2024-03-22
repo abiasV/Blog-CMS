@@ -1,8 +1,8 @@
 <?php
-include("templates/header.php");
+  include("templates/header.php");
 ?>
     <div class="create-form w-100 mx-auto p-4" style="max-width: 700px;">
-      <form action="process.php" method="post">
+      <form action="posts.php" method="post">
         <div class="form-field mb-4">
           <input type="text" name="title" class="form-control" id="" placeholder="Enter Title:">
         </div>
@@ -19,6 +19,7 @@ include("templates/header.php");
 
       </form>
     </div>
+    
 <?php
-include("templates/footer.php");
+  include("templates/footer.php");
 ?>
